@@ -1,0 +1,695 @@
+/* ============================================================
+   modul5.css — Kustomisasi di atas Bootstrap
+   
+   PERBEDAAN DARI modul4.css:
+   modul4.css → nulis CSS Grid, Flexbox, layout DARI NOL (±450 baris)
+   modul5.css → Bootstrap sudah handle layout, file ini LEBIH PENDEK
+                karena kita hanya:
+                1. Override warna/style Bootstrap yang tidak sesuai brand
+                2. Tambahkan komponen yang Bootstrap tidak punya
+   ============================================================ */
+
+
+/* ============================================================
+   1. CSS VARIABLES — sama persis dengan modul4
+   ============================================================ */
+:root {
+  --bg:             #ffffff;
+  --bg-alt:         #fafaf8;
+  --bg-card:        #ffffff;
+  --text-primary:   #1a1a1a;
+  --text-secondary: #555555;
+  --text-dim:       #999999;
+  --red:            #cc1e1e;
+  --red-dark:       #a31616;
+  --red-light:      rgba(204, 30, 30, 0.08);
+  --yellow:         #f5c800;
+  --yellow-dark:    #d4ab00;
+  --yellow-light:   rgba(245, 200, 0, 0.15);
+  --border:         rgba(0, 0, 0, 0.08);
+  --shadow-sm:      0 2px 12px rgba(0, 0, 0, 0.06);
+  --shadow-md:      0 6px 28px rgba(0, 0, 0, 0.10);
+  --radius-sm:      8px;
+  --radius-md:      14px;
+  --ease:           0.3s ease;
+}
+
+
+/* ============================================================
+   2. RESET BASE (tetap perlu, Bootstrap tidak reset semua)
+   ============================================================ */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  background: var(--bg);
+  color: var(--text-primary);
+}
+
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; padding: 0; margin: 0; }
+
+
+/* ============================================================
+   3. HEADER
+   Bootstrap tidak punya header brand merah-gelap,
+   jadi kita definisikan sendiri — sama seperti modul4.
+   ============================================================ */
+.site-header {
+  background: #150505;
+  border-bottom: 3px solid var(--yellow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  /* Modul4: display:flex manual
+     Modul5: JUGA pakai flex, tapi kita tulis sendiri di sini
+     karena Bootstrap tidak punya class .header-inner */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 68px;
+}
+
+.logo { display: flex; align-items: center; gap: 10px; }
+
+.logo-img {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.logo-fallback {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--yellow);
+}
+
+/* Nav link: override warna Bootstrap (Bootstrap default = biru) */
+.site-nav ul { display: flex; gap: 4px; align-items: center; }
+
+.site-nav a {
+  display: block;
+  padding: 8px 14px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.87rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  transition: all var(--ease);
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+  color: var(--yellow);
+  background: rgba(245, 200, 0, 0.1);
+}
+
+/* Hamburger (sama persis modul4) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: all var(--ease);
+}
+
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+
+/* ============================================================
+   4. PAGE WRAPPER
+   Modul4: .page-grid { display: grid; grid-template-areas: ... }
+   Modul5: Bootstrap .container-fluid .row sudah handle layout,
+           kita hanya perlu pastikan wrapper tidak ada padding aneh
+   ============================================================ */
+.page-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+/* ============================================================
+   5. MAIN BODY
+   ============================================================ */
+.site-body {
+  background: var(--bg);
+  padding: 32px 28px;
+}
+
+
+/* ============================================================
+   6. FEATURED ARTICLE — sama persis modul4
+   ============================================================ */
+.featured-article {
+  background: #150505;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 28px;
+  position: relative;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px;
+  background-image: url('https://sheilaon7.com/wp-content/uploads/2024/11/SLIDER-WEB.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.featured-article::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.2) 100%);
+}
+
+.featured-article .content { position: relative; z-index: 1; }
+
+.featured-badge {
+  display: inline-block;
+  background: var(--yellow);
+  color: #1a1a1a;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.featured-article h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.featured-article p { color: rgba(255,255,255,0.75); font-size: 0.9rem; }
+
+
+/* ============================================================
+   7. SECTION LABEL — sama persis modul4
+   ============================================================ */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  margin-top: 28px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border);
+}
+
+.section-label span {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--red);
+  white-space: nowrap;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+
+/* ============================================================
+   8. ARTICLE CARDS
+   Modul4: .articles-grid { display: grid; grid-template-columns: repeat(2,1fr) }
+   Modul5: Bootstrap .row .col-md-6 yang handle grid-nya
+           Kita hanya style kartu-nya (identik modul4)
+   ============================================================ */
+
+/* Override Bootstrap: .articles-grid pakai row Bootstrap, jangan tambah margin aneh */
+.articles-grid { margin-bottom: 32px; }
+
+.article-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border) !important; /* Override Bootstrap border */
+  border-radius: var(--radius-md) !important;
+  overflow: hidden;
+  transition: all var(--ease);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Bootstrap punya .card-body, kita override supaya nama class tidak konflik */
+.article-card .card-body { padding: 14px 16px; }
+
+.article-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(245, 200, 0, 0.4) !important;
+  box-shadow: var(--shadow-md);
+}
+
+.card-thumb {
+  height: 140px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f8e8e8, #fff8e0);
+}
+
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--ease);
+}
+
+.article-card:hover .card-thumb img { transform: scale(1.05); }
+
+.card-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 6px;
+}
+
+/* Override Bootstrap: .card-title Bootstrap punya style sendiri */
+.article-card .card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.card-meta .dot { opacity: 0.4; }
+
+
+/* ============================================================
+   9. TIMELINE — sama persis modul4
+   ============================================================ */
+.timeline {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 32px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--red), var(--yellow));
+  border-radius: 2px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.timeline-item:last-child { margin-bottom: 0; }
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--yellow);
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 0 2px var(--yellow);
+}
+
+.timeline-year {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--red);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.timeline-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 0.98rem;
+  margin-bottom: 2px;
+}
+
+.timeline-desc {
+  font-size: 0.83rem;
+  color: var(--text-secondary);
+}
+
+
+/* ============================================================
+   10. SIDEBAR
+   Modul4: .site-sidebar { display:flex; flex-direction:column; gap:28px }
+   Modul5: Bootstrap col-lg-4 handle lebar kolom-nya.
+           Kita tetap pakai flex untuk susun widget vertikal.
+   ============================================================ */
+.site-sidebar {
+  background: var(--bg-alt);
+  border-left: 1.5px solid var(--border);
+  padding: 32px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.widget {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.widget-header {
+  background: #150505;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.widget-header span {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--yellow);
+}
+
+.widget-body { padding: 16px; }
+
+/* Profile Widget */
+.profile-widget { text-align: center; padding: 20px 16px; }
+
+.profile-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--red), var(--yellow));
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.profile-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.profile-bio {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+/* Stat — dipakai bersama Bootstrap d-flex justify-content-center */
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: var(--red);
+}
+
+.stat-label {
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Song List */
+.song-list { display: flex; flex-direction: column; gap: 2px; }
+
+.song-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  transition: padding-left var(--ease);
+}
+
+.song-item:last-child { border-bottom: none; }
+.song-item:hover { padding-left: 4px; }
+
+.song-rank {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: var(--red);
+  opacity: 0.5;
+  min-width: 18px;
+  text-align: center;
+}
+
+.song-details { flex: 1; }
+.song-name { font-size: 0.88rem; font-weight: 600; color: var(--text-primary); }
+.song-album { font-size: 0.73rem; color: var(--text-dim); }
+
+.song-badge {
+  background: var(--yellow-light);
+  border: 1px solid rgba(245,200,0,0.4);
+  color: #7a5f00;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* Lyric */
+.lyric-quote {
+  padding: 16px;
+  background: linear-gradient(135deg, #fff8e0, #fffdf8);
+  border-left: 3px solid var(--yellow);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin-bottom: 12px;
+}
+
+.lyric-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.93rem;
+  color: var(--text-primary);
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+.lyric-source { font-size: 0.73rem; font-weight: 600; color: var(--red); margin: 0; }
+
+.btn-lyric {
+  display: block;
+  width: 100%;
+  padding: 9px;
+  background: var(--red-light);
+  border: 1.5px solid rgba(204,30,30,0.2);
+  border-radius: var(--radius-sm);
+  color: var(--red);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--ease);
+}
+
+.btn-lyric:hover { background: var(--red); color: #fff; }
+
+/* Tag */
+.tag {
+  background: var(--red-light);
+  border: 1px solid rgba(204,30,30,0.15);
+  color: var(--red);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all var(--ease);
+}
+
+.tag:hover,
+.tag.active { background: var(--red); color: #fff; }
+
+
+/* ============================================================
+   11. FOOTER
+   Modul4: .footer-grid { display:grid; grid-template-columns: 2fr 1fr 1fr }
+   Modul5: Bootstrap .container .row .col-lg-5 .col-lg-3 .col-lg-4
+           yang handle grid-nya — kita hanya style isinya
+   ============================================================ */
+.site-footer {
+  background: #150505;
+  border-top: 3px solid var(--yellow);
+  padding: 40px 0 20px;
+}
+
+.footer-logo-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--yellow);
+}
+
+.footer-logo-sub {
+  font-size: 0.58rem;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.footer-desc {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.7;
+  max-width: 260px;
+  margin: 0;
+}
+
+.social-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.6);
+  cursor: pointer;
+  transition: all var(--ease);
+}
+
+.social-btn:hover { background: var(--yellow); border-color: var(--yellow); color: #1a1a1a; }
+
+.footer-col h4 {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--yellow);
+  margin-bottom: 14px;
+}
+
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links a { font-size: 0.85rem; color: rgba(255,255,255,0.5); transition: color var(--ease); }
+.footer-links a:hover { color: #fff; }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 16px;
+  margin-top: 8px;
+}
+
+.footer-copy   { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+.footer-attrib { font-size: 0.72rem; color: rgba(255,255,255,0.2); }
+
+
+/* ============================================================
+   12. SCROLL REVEAL — sama persis modul4
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+.reveal:nth-child(2) { transition-delay: 0.1s; }
+.reveal:nth-child(3) { transition-delay: 0.2s; }
+.reveal:nth-child(4) { transition-delay: 0.3s; }
+
+
+/* ============================================================
+   13. RESPONSIVE — Bootstrap handle sebagian besar!
+   
+   Modul4: harus tulis manual @media query untuk grid
+   Modul5: Bootstrap otomatis:
+     - col-md-6 → 1 kolom di HP, 2 kolom di tablet+
+     - col-lg-8/4 → full width di HP, 2 kolom di laptop+
+   
+   Kita hanya perlu tambahkan yang Bootstrap tidak cover:
+   hamburger mobile, nav slide, sidebar border
+   ============================================================ */
+
+/* Tablet: sidebar turun ke bawah (Bootstrap sudah handle col-lg) */
+@media (max-width: 991px) {
+  .site-sidebar {
+    border-left: none;
+    border-top: 1.5px solid var(--border);
+  }
+}
+
+/* Mobile: hamburger + nav slide */
+@media (max-width: 600px) {
+  .hamburger { display: flex; }
+
+  .site-nav {
+    position: absolute;
+    top: 68px;
+    left: 0; right: 0;
+    background: rgba(15,5,5,0.97);
+    border-bottom: 2px solid var(--yellow);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    z-index: 99;
+  }
+
+  .site-nav.open { max-height: 300px; }
+
+  .site-nav ul { flex-direction: column; align-items: center; padding: 12px 0; gap: 4px; }
+  .site-nav a { font-size: 1rem; padding: 10px 24px; }
+
+  .header-inner { padding: 0 16px; }
+  .site-body { padding: 20px 16px; }
+  .site-sidebar { padding: 20px 16px; }
+
+  .footer-bottom { flex-direction: column !important; text-align: center; }
+}

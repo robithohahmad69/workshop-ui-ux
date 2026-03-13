@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sheilagank – CSS Grid & Flexbox Layout</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="modul4.css" />
+</head>
+<body>
+
+  <!--
+    ╔══════════════════════════════════════════════════════╗
+    ║          PAGE GRID CONTAINER (CSS Grid)              ║
+    ║  Membungkus seluruh halaman dalam grid 2 kolom       ║
+    ║  Area: header | body+sidebar | footer                ║
+    ╚══════════════════════════════════════════════════════╝
+  -->
+  <div class="page-grid">
+
+    <!-- ===================================================
+         AREA: header
+         Flexbox: logo (kiri) + nav (kanan)
+    =================================================== -->
+    <header class="site-header" id="site-header">
+      <div class="header-inner">
+
+        <!-- Logo — Flexbox: ikon + teks -->
+        <a href="#" class="logo">
+           <img 
+    src="https://sheilaon7.com/wp-content/uploads/2024/01/logo-baru-new.png"
+    alt="Sheila On 7"
+    class="logo-img"
+  />
+        </a>
+
+        <!-- Hamburger (mobile) -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle Menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- Navigasi — Flexbox horizontal -->
+        <nav class="site-nav" id="site-nav">
+          <ul>
+            <li><a href="#" class="nav-link active" data-section="home">Beranda</a></li>
+            <li><a href="#" class="nav-link" data-section="artikel">Artikel</a></li>
+            <li><a href="#" class="nav-link" data-section="diskografi">Diskografi</a></li>
+            <li><a href="#" class="nav-link" data-section="komunitas">Komunitas</a></li>
+            <li><a href="#" class="nav-link" data-section="tentang">Tentang</a></li>
+          </ul>
+        </nav>
+
+      </div>
+    </header>
+
+
+    <!-- ===================================================
+         AREA: body
+         Konten utama: artikel, kartu, timeline
+    =================================================== -->
+    <main class="site-body">
+
+      <!-- Featured Article Hero -->
+      <article class="featured-article">
+        <div class="content">
+          <span class="featured-badge">✦ Artikel Unggulan</span>
+          <h2>25 Tahun "Dan": Lagu yang Mengubah Industri Musik Indonesia</h2>
+          <p>Bagaimana sebuah lagu dari Yogyakarta menaklukkan chart nasional selama 40 minggu berturut-turut dan menjadi simbol generasi.</p>
+        </div>
+      </article>
+
+      <!-- Section: Artikel Terbaru -->
+      <div class="section-label">
+        <span>Artikel Terbaru</span>
+      </div>
+
+      <!--
+        Grid 2 kolom untuk kartu artikel
+        CSS Grid: repeat(2, 1fr) = 2 kolom sama rata
+      -->
+      <div class="articles-grid" id="articles-grid">
+
+        <article class="article-card">
+          <div class="card-thumb">
+            <img src="https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2Ffe85986bfd29686ab95dac4f36cc8cb5.600x600x1.jpg"
+                 alt="Album SO7 1999" />
+          </div>
+          <div class="card-body">
+            <p class="card-tag">📀 Album</p>
+            <h3 class="card-title">Self-Titled 1999: Awal dari Segalanya</h3>
+            <div class="card-meta">
+              <span>Reza Fandika</span>
+              <span class="dot">•</span>
+              <span>15 Mar 2025</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <div class="card-thumb">
+            <img src="https://t2.genius.com/unsafe/375x0/https%3A%2F%2Fimages.genius.com%2F24b18c02327cf0e98b0f0d690fd267ee.600x600x1.jpg"
+                 alt="Album Kisah Klasik" />
+          </div>
+          <div class="card-body">
+            <p class="card-tag">🎵 Review</p>
+            <h3 class="card-title">Kisah Klasik: Album Terbaik SO7 Sepanjang Masa?</h3>
+            <div class="card-meta">
+              <span>Anita Susanti</span>
+              <span class="dot">•</span>
+              <span>10 Mar 2025</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <div class="card-thumb">
+            <img src="https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F100cbee2265eefb1309422b5bf9f96e6.587x587x1.jpg"
+                 alt="Album 07 Des" />
+          </div>
+          <div class="card-body">
+            <p class="card-tag">🎸 Trivia</p>
+            <h3 class="card-title">Fakta Tersembunyi di Balik Album "07 Des"</h3>
+            <div class="card-meta">
+              <span>Budi Hartanto</span>
+              <span class="dot">•</span>
+              <span>5 Mar 2025</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <div class="card-thumb">
+            <img src="https://t2.genius.com/unsafe/838x0/https%3A%2F%2Fimages.genius.com%2Fd24874e179fa909dd8f963deb1cea082.1000x1000x1.jpg"
+                 alt="Album Film Favorit" />
+          </div>
+          <div class="card-body">
+            <p class="card-tag">🎤 Konser</p>
+            <h3 class="card-title">Sheila On 7 di Era Streaming: Adaptasi yang Sempurna</h3>
+            <div class="card-meta">
+              <span>Clara Dewi</span>
+              <span class="dot">•</span>
+              <span>1 Mar 2025</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Section: Timeline Diskografi -->
+      <div class="section-label" id="label-timeline">
+        <span>Perjalanan Diskografi</span>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <p class="timeline-year">1999</p>
+          <p class="timeline-title">Sheila On 7 (Self-Titled)</p>
+          <p class="timeline-desc">Debut legendaris — terjual 1,5 juta kopi. Lahirnya "Dan" dan "Kita".</p>
+        </div>
+        <div class="timeline-item">
+          <p class="timeline-year">2000</p>
+          <p class="timeline-title">Kisah Klasik Untuk Masa Depan</p>
+          <p class="timeline-desc">Terjual 1,7 juta kopi. "Sephia" jadi anthem generasi.</p>
+        </div>
+        <div class="timeline-item">
+          <p class="timeline-year">2002</p>
+          <p class="timeline-title">07 Des</p>
+          <p class="timeline-desc">Sound lebih rock. "Melompat Lebih Tinggi" masuk 150 Lagu Terbesar Indonesia.</p>
+        </div>
+        <div class="timeline-item">
+          <p class="timeline-year">2004</p>
+          <p class="timeline-title">Pejantan Tangguh</p>
+          <p class="timeline-desc">Eksplorasi sound baru, tetap warm khas SO7. 450.000+ kopi terjual.</p>
+        </div>
+        <div class="timeline-item">
+          <p class="timeline-year">2014</p>
+          <p class="timeline-title">Musim Yang Baik</p>
+          <p class="timeline-desc">Comeback bersejarah setelah hiatus panjang — disambut meriah.</p>
+        </div>
+        <div class="timeline-item">
+          <p class="timeline-year">2018</p>
+          <p class="timeline-title">Film Favorit</p>
+          <p class="timeline-desc">Era mandiri di bawah 507 Records. Tetap relevan di streaming.</p>
+        </div>
+      </div>
+
+    </main>
+
+
+    <!-- ===================================================
+         AREA: sidebar
+         Flexbox vertikal: widget bertumpuk
+    =================================================== -->
+    <aside class="site-sidebar">
+
+      <!-- Widget 1: Profil Band -->
+      <div class="widget">
+        <div class="widget-header">
+          <span>👥 Tentang Band</span>
+        </div>
+        <div class="profile-widget">
+          <div class="profile-avatar">🎸</div>
+          <p class="profile-name">Sheila On 7</p>
+          <p class="profile-bio">Band pop rock legendaris asal Yogyakarta. Berdiri 1996, menemani jutaan pendengar di Indonesia.</p>
+          <div class="profile-stats">
+            <div class="stat">
+              <div class="stat-num">8M+</div>
+              <div class="stat-label">Kopi Album</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">28</div>
+              <div class="stat-label">Tahun Aktif</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">7</div>
+              <div class="stat-label">Album</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Widget 2: Top 5 Lagu -->
+      <div class="widget">
+        <div class="widget-header">
+          <span>🔥 Top Lagu</span>
+        </div>
+        <div class="widget-body">
+          <div class="song-list">
+            <div class="song-item">
+              <span class="song-rank">01</span>
+              <div class="song-details">
+                <div class="song-name">Dan</div>
+                <div class="song-album">SO7 (1999)</div>
+              </div>
+              <span class="song-badge">40 Minggu #1</span>
+            </div>
+            <div class="song-item">
+              <span class="song-rank">02</span>
+              <div class="song-details">
+                <div class="song-name">Sephia</div>
+                <div class="song-album">Kisah Klasik (2000)</div>
+              </div>
+            </div>
+            <div class="song-item">
+              <span class="song-rank">03</span>
+              <div class="song-details">
+                <div class="song-name">Melompat Lebih Tinggi</div>
+                <div class="song-album">07 Des (2002)</div>
+              </div>
+            </div>
+            <div class="song-item">
+              <span class="song-rank">04</span>
+              <div class="song-details">
+                <div class="song-name">Anugerah Terindah</div>
+                <div class="song-album">SO7 (1999)</div>
+              </div>
+            </div>
+            <div class="song-item">
+              <span class="song-rank">05</span>
+              <div class="song-details">
+                <div class="song-name">Sebuah Kisah Klasik</div>
+                <div class="song-album">Kisah Klasik (2000)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Widget 3: Quote Lirik -->
+      <div class="widget" id="widget-lyric">
+        <div class="widget-header">
+          <span>💬 Lirik Pilihan</span>
+        </div>
+        <div class="widget-body">
+          <div class="lyric-quote">
+            <p class="lyric-text" id="lyric-text">"Dan mungkin saja kau bukan yang terbaik, namun kau adalah yang terbaik untukku..."</p>
+            <p class="lyric-source" id="lyric-source">— Dan, Album SO7 (1999)</p>
+          </div>
+          <button class="btn-lyric" id="btn-next-lyric">Lirik Berikutnya ↻</button>
+        </div>
+      </div>
+
+      <!-- Widget 4: Tag Cloud -->
+      <div class="widget">
+        <div class="widget-header">
+          <span>🏷️ Topik</span>
+        </div>
+        <div class="widget-body">
+          <div class="tag-cloud" id="tag-cloud">
+            <span class="tag">Pop Rock</span>
+            <span class="tag">Yogyakarta</span>
+            <span class="tag">90an</span>
+            <span class="tag">Nostalgia</span>
+            <span class="tag">Duta</span>
+            <span class="tag">Eross</span>
+            <span class="tag">Adam</span>
+            <span class="tag">Sony Music</span>
+            <span class="tag">Konser</span>
+            <span class="tag">Sheilagank</span>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+
+    <!-- ===================================================
+         AREA: footer
+         Grid 3 kolom + Flexbox di setiap kolom
+    =================================================== -->
+    <footer class="site-footer">
+
+      <div class="footer-grid">
+
+        <!-- Kolom 1: Brand -->
+        <div class="footer-brand">
+          <div>
+            <div class="footer-logo-title">Sheilagank</div>
+            <div class="footer-logo-sub">Fan Website Sheila On 7</div>
+          </div>
+          <p class="footer-desc">
+            Tempat berkumpul para Sheilagank sejati. Dibuat dengan penuh cinta untuk merayakan warisan musik Sheila On 7.
+          </p>
+          <!-- Social media — Flexbox horizontal -->
+          <div class="social-links">
+            <div class="social-btn" title="Instagram">📸</div>
+            <div class="social-btn" title="Twitter/X">✖</div>
+            <div class="social-btn" title="YouTube">▶</div>
+            <div class="social-btn" title="Spotify">🎵</div>
+            <div class="social-btn" title="TikTok">🎶</div>
+          </div>
+        </div>
+
+        <!-- Kolom 2: Navigasi -->
+        <div class="footer-col">
+          <h4>Navigasi</h4>
+          <div class="footer-links">
+            <a href="#">🏠 Beranda</a>
+            <a href="#">📰 Artikel</a>
+            <a href="#">💿 Diskografi</a>
+            <a href="#">🎤 Konser</a>
+            <a href="#">👥 Komunitas</a>
+          </div>
+        </div>
+
+        <!-- Kolom 3: Informasi -->
+        <div class="footer-col">
+          <h4>Informasi</h4>
+          <div class="footer-links">
+            <a href="#">📋 Tentang Kami</a>
+            <a href="#">📧 Kontak</a>
+            <a href="#">🔒 Privasi</a>
+            <a href="#">📜 Disclaimer</a>
+            <a href="#">🔗 Situs Resmi SO7</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 Sheilagank. All rights reserved. Bukan situs resmi SO7.</p>
+        <p class="footer-attrib">Cover album © Sony Music Entertainment Indonesia</p>
+      </div>
+
+    </footer>
+
+  </div><!-- end .page-grid -->
+
+  <script src="modul4.js"></script>
+</body>
+</html>
