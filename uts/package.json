@@ -1,0 +1,40 @@
+{
+  "name": "rose-fan-website",
+  "version": "1.0.0",
+  "description": "ROSÉ - Park Chaeyoung Official Fan Website. Minimalist design featuring the main vocalist of BLACKPINK.",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve",
+    "dev": "npx live-server --port=3000",
+    "build": "echo 'No build step required for static HTML'",
+    "deploy": "echo 'Deploy to your hosting service'"
+  },
+  "keywords": [
+    "rose",
+    "rosie",
+    "park-chaeyoung",
+    "blackpink",
+    "kpop",
+    "fan-website",
+    "solo-artist",
+    "html5",
+    "css3",
+    "javascript",
+    "responsive",
+    "minimalist"
+  ],
+  "author": "BLINK Fan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/rose-fan-website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/rose-fan-website/issues"
+  },
+  "homepage": "https://github.com/yourusername/rose-fan-website#readme",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "serve": "^14.2.0"
+  }
+}
