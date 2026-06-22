@@ -1,0 +1,30 @@
+{
+  "builds": [
+    {
+      "src": "uas/**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/uas/pelanggan/index.html"
+    },
+    {
+      "src": "/admin/(.*)",
+      "dest": "/uas/admin/$1"
+    },
+    {
+      "src": "/pelanggan/(.*)",
+      "dest": "/uas/pelanggan/$1"
+    },
+    {
+      "src": "/css/(.*)",
+      "dest": "/uas/css/$1"
+    },
+    {
+      "src": "/js/(.*)",
+      "dest": "/uas/js/$1"
+    }
+  ]
+}
